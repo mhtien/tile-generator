@@ -1,0 +1,27 @@
+*{
+    border: green 1px solid;
+}
+
+body {
+    margin: 0;
+}
+
+.variables {
+    display: inline-block;
+    position: relative;
+    height: 100%;
+    width: 30vw;
+}
+.tile-grid {
+    position: absolute;
+    display: inline;
+    width: 70vw;
+    height: auto;
+}
+
+.tile {
+    position: relative;
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+}
