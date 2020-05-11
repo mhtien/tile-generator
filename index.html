@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Tile Pattern Generator</title>
+</head>
+
+<body>
+    <div class="heading">
+        <h1>Tile Pattern Generator</h1>
+    </div>
+    <div class="variables">
+        <div class="grid-option">
+            <div class="row-variable">Rows<input class="row-input" type="number">
+            </div>
+            <div class="column-variable">Column<input class="column-input" type="number">
+            </div>
+        </div>
+        <div class="tile-colors">
+            <div class="color-picker">
+                <label>Tile Colour:</label>
+                <input class="color-input" type="color" value="#c0c0c0">
+            </div>
+            <div class="color-picker">
+                <label>Tile Colour:</label>
+                <input class="color-input" type="color" value="#008080">
+            </div>
+            <div class="color-picker">
+                <label>Tile Colour:</label>
+                <input class="color-input" type="color" value="#8080ff">
+            </div>
+        </div>
+        <button class= "add-color">Add color</button>
+        <button class= "remove-color">Remove color</button>
+        <button class="generate">Generate!</button>
+    </div>
+        <div class="tile-grid">
+        </div>
+        <script src="script.js"></script>
+</body>
+
+</html>
