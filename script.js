@@ -1,11 +1,11 @@
 // target generate button
-const generateBtn = document.getElementsByClassName("generate")[0];
+const generateBtn = document.getElementsByClassName("generate-btn")[0];
 
 // target add colour button
-const addColorBtn = document.getElementsByClassName("add-color")[0];
+const addColorBtn = document.getElementsByClassName("add-color-btn")[0];
 
 // target remove colour button
-const removeColorBtn = document.getElementsByClassName("remove-color")[0];
+const removeColorBtn = document.getElementsByClassName("remove-color-btn")[0];
 
 // targets colour palette
 const colorPalette = document.getElementsByClassName("color-palette")[0];
@@ -24,6 +24,7 @@ function addTiles() {
 function addColor() {
     let newColor = document.createElement("div");
     newColor.setAttribute("class", "color-picker");
+    newColor.setAttribute("oninput", "showHexColor(event)");
 
     let newLabel = document.createElement("label");
     newLabel.innerHTML = "Tile Colour:";
@@ -47,6 +48,13 @@ function removeColor() {
         // need to add text to be revealed eventually
         alert("you need atleast one color!")
     }
+}
+
+// color picker value to show above color picker
+function showHexColor(event) {
+    let currentTarget = event.currentTarget;
+    let colorValue = currentTarget.children[1].value;
+    currentTarget.children[0].innerText = colorValue;
 }
 
 // creating the grid and filling with tiles
@@ -88,12 +96,13 @@ function assignColors() {
     for (let i = 0; i < tileGrid.childElementCount; i++) {
         // get random colour
         let randomColor = colorValues[Math.floor(Math.random() * Math.floor(colorValues.length))]
-        tileGrid.children[i].style.backgroundColor= randomColor
+        tileGrid.children[i].style.backgroundColor = randomColor
     }
 }
+// initial tile grid
+createGrid();
 
-
+// event listeners
 generateBtn.addEventListener("click", createGrid);
-
 addColorBtn.addEventListener("click", addColor);
 removeColorBtn.addEventListener("click", removeColor);

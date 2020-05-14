@@ -14,28 +14,31 @@
     </div>
     <div class="variables">
         <div class="grid-option">
-            <div class="row-variable">Rows<input class="row-input" type="number">
+            <div class="row-variable">Rows<input class="row-input" type="number" value= "5">
             </div>
-            <div class="column-variable">Column<input class="column-input" type="number">
+            <div class="column-variable">Column<input class="column-input" type="number" value= "5">
             </div>
         </div>
+        <div class="color-btns">
+            <button class= "add-color-btn">Add color</button>
+            <button class= "remove-color-btn">Remove color</button>
+        </div>
         <div class="color-palette">
-            <div class="color-picker">
+        <div class="color-picker" oninput="showHexColor(event)">
                 <label>Tile Colour:</label>
                 <input class="color-input" type="color" value="#c0c0c0">
             </div>
-            <div class="color-picker">
+            <div class="color-picker" oninput="showHexColor(event)">
                 <label>Tile Colour:</label>
                 <input class="color-input" type="color" value="#008080">
             </div>
-            <div class="color-picker">
+            <div class="color-picker" oninput="showHexColor(event)">
                 <label>Tile Colour:</label>
                 <input class="color-input" type="color" value="#8080ff">
             </div>
         </div>
-        <button class= "add-color">Add color</button>
-        <button class= "remove-color">Remove color</button>
-        <button class="generate">Generate!</button>
+        
+        <button class="generate-btn">Generate!</button>
     </div>
         <div class="tile-grid">
         </div>
