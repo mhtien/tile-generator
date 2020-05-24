@@ -43,6 +43,8 @@ label {
     position: relative;
     margin: auto;
     border-radius: 3px;
+    border: none;
+    
 }
 
 .tile-grid {
@@ -53,6 +55,8 @@ label {
     margin: auto;
     background-color: #ECF4F9;
     min-height: 500px;
+    /* removes default space when tiles start on new row */
+    font-size: 0;
 }
 
 .tile {
@@ -60,7 +64,7 @@ label {
     display: inline-block;
     height: 20px;
     width: 20px;
-    /* padding: 1px; */
+    margin: 1px;
 
 }
 

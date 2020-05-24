@@ -13,6 +13,10 @@ const colorPalette = document.getElementsByClassName("color-palette")[0];
 // targets tile grid div container
 let tileGrid = document.getElementsByClassName("tile-grid")[0];
 
+// targets types of generating grid
+let randomBtn = document.getElementById("randomise");
+let notAdjacentBtn = document.getElementById("not-adjacent");
+
 // creating new tiles 
 function addTiles() {
     let newTile = document.createElement("div");
@@ -66,7 +70,7 @@ function createGrid() {
     let totalTiles = rowNumber * columnNumber;
 
     // adding styling to grid - HTML
-    let rowWidth = rowNumber * 20 + "px";
+    let rowWidth = rowNumber * 22 + "px";
     tileGrid.style.width = rowWidth;
 
     // clearing any existing tiles
@@ -81,6 +85,25 @@ function createGrid() {
     assignColors();
 }
 
+function randomiseBtnPress() {
+    if (randomBtn.checked === true) {
+        notAdjacentBtn.checked = false;
+    } else {
+        notAdjacentBtn.checked = true;
+    }
+}
+function notAdjacentBtnPress() {
+    if (notAdjacentBtn.checked === true) {
+        randomBtn.checked = false;
+    } else {
+        randomBtn.checked = true;
+    }
+}
+
+function randomInteger(num) {
+    return Math.floor(Math.random()*num);
+}
+
 
 // obtaining colour values
 function assignColors() {
@@ -88,21 +111,55 @@ function assignColors() {
     let colorRange = document.getElementsByClassName("color-input");
     let colorValues = [];
 
+    // pushing colour values into array
     for (let i = 0; i < colorRange.length; i++) {
         colorValues.push(colorRange[i].value);
     }
 
-    // assigning random colour to tiles
-    for (let i = 0; i < tileGrid.childElementCount; i++) {
-        // get random colour
-        let randomColor = colorValues[Math.floor(Math.random() * Math.floor(colorValues.length))]
-        tileGrid.children[i].style.backgroundColor = randomColor
+    // defining array length
+    let arrayLength = colorValues.length;
+
+    // if randomise radio checked
+    if (randomBtn.checked === true) {
+        // assigning random colour to tiles
+        for (let i = 0; i < tileGrid.childElementCount; i++) {
+            // get random colour
+            let randomColor = colorValues[randomInteger(arrayLength)];
+            tileGrid.children[i].style.backgroundColor = randomColor;
+        }
+    }
+    // // if not adjacent radio checked
+    // removing array element by value
+    let possibleColors = [...colorValue];
+    let removeColor = "value";
+    possibleColors.splice(removeColor,1)
+
+    if (notAdjacentBtnPress === true) {
+        for (let i = 0; i < tileGrid.childElementCount; i++) {
+            // get random colour
+            let randomColor = colorValues[randomInteger(arrayLength)];
+            tileGrid.children[i].style.backgroundColor = randomColor;
+
+            if (i > 0) {
+                let x = tileGrid.children[i].style.backgroundColor;
+                let y = tileGrid.children[i - 1].style.backgroundColor
+                if (x === y) {
+                    let randomColor = colorValues[randomInteger(arrayLength)]
+                    tileGrid.children[i].style.backgroundColor = randomColor;
+                }
+            }
+
+        }
     }
 }
 // initial tile grid
 createGrid();
 
+
 // event listeners
 generateBtn.addEventListener("click", createGrid);
 addColorBtn.addEventListener("click", addColor);
 removeColorBtn.addEventListener("click", removeColor);
+
+randomBtn.addEventListener("click", randomiseBtnPress);
+notAdjacentBtn.addEventListener("click", notAdjacentBtnPress);
