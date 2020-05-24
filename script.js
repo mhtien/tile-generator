@@ -130,27 +130,27 @@ function assignColors() {
     }
     // // if not adjacent radio checked
     // removing array element by value
-    let possibleColors = [...colorValue];
-    let removeColor = "value";
-    possibleColors.splice(removeColor,1)
+    // let possibleColors = [...colorValue];
+    // let removeColor = "value";
+    // possibleColors.splice(removeColor,1)
 
-    if (notAdjacentBtnPress === true) {
-        for (let i = 0; i < tileGrid.childElementCount; i++) {
-            // get random colour
-            let randomColor = colorValues[randomInteger(arrayLength)];
-            tileGrid.children[i].style.backgroundColor = randomColor;
+    // if (notAdjacentBtnPress === true) {
+    //     for (let i = 0; i < tileGrid.childElementCount; i++) {
+    //         // get random colour
+    //         let randomColor = colorValues[randomInteger(arrayLength)];
+    //         tileGrid.children[i].style.backgroundColor = randomColor;
 
-            if (i > 0) {
-                let x = tileGrid.children[i].style.backgroundColor;
-                let y = tileGrid.children[i - 1].style.backgroundColor
-                if (x === y) {
-                    let randomColor = colorValues[randomInteger(arrayLength)]
-                    tileGrid.children[i].style.backgroundColor = randomColor;
-                }
-            }
+    //         if (i > 0) {
+    //             let x = tileGrid.children[i].style.backgroundColor;
+    //             let y = tileGrid.children[i - 1].style.backgroundColor
+    //             if (x === y) {
+    //                 let randomColor = colorValues[randomInteger(arrayLength)]
+    //                 tileGrid.children[i].style.backgroundColor = randomColor;
+    //             }
+    //         }
 
-        }
-    }
+    //     }
+    // }
 }
 // initial tile grid
 createGrid();
