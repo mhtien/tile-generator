@@ -47,6 +47,10 @@ label {
     
 }
 
+.row-container {
+    text-align: center;
+}
+
 .tile-grid {
     position: relative;
     /* display: inline-block; */

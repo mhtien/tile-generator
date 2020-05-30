@@ -17,11 +17,29 @@ let tileGrid = document.getElementsByClassName("tile-grid")[0];
 let randomBtn = document.getElementById("randomise");
 let notAdjacentBtn = document.getElementById("not-adjacent");
 
+
 // creating new tiles 
-function addTiles() {
+function addTiles(event) {
     let newTile = document.createElement("div");
     newTile.setAttribute("class", "tile");
-    tileGrid.appendChild(newTile);
+    event.appendChild(newTile);
+}
+
+function addNewRow(event) {
+    // targets row number
+    let rowNumber = document.getElementsByClassName("row-input")[0].value;
+
+    let newRow = document.createElement("div");
+    newRow.setAttribute("class", "row-container");
+    let i = 0;
+    do {
+        addTiles(newRow);
+        i++;
+    }
+    while (i < rowNumber);
+
+    event.appendChild(newRow);
+
 }
 
 // adding additional colour picker
@@ -64,23 +82,23 @@ function showHexColor(event) {
 // creating the grid and filling with tiles
 function createGrid() {
 
-    // create grid
-    let rowNumber = document.getElementsByClassName("row-input")[0].value;
-    let columnNumber = document.getElementsByClassName("column-input")[0].value;
-    let totalTiles = rowNumber * columnNumber;
-
-    // adding styling to grid - HTML
-    let rowWidth = rowNumber * 22 + "px";
-    tileGrid.style.width = rowWidth;
+      // targets column number
+      let columnNumber = document.getElementsByClassName("column-input")[0].value;
 
     // clearing any existing tiles
     while (tileGrid.firstChild) {
         tileGrid.firstChild.remove();
     }
-    // adding new total of tiles
-    for (let i = 0; i < totalTiles; i++) {
-        addTiles();
+
+    // adding rows to create grid
+    let i = 0;
+    do {
+        addNewRow(tileGrid);
+        i++;
     }
+
+    while (i < columnNumber);
+
 
     assignColors();
 }
@@ -101,7 +119,7 @@ function notAdjacentBtnPress() {
 }
 
 function randomInteger(num) {
-    return Math.floor(Math.random()*num);
+    return Math.floor(Math.random() * num);
 }
 
 
@@ -121,11 +139,13 @@ function assignColors() {
 
     // if randomise radio checked
     if (randomBtn.checked === true) {
-        // assigning random colour to tiles
-        for (let i = 0; i < tileGrid.childElementCount; i++) {
-            // get random colour
-            let randomColor = colorValues[randomInteger(arrayLength)];
-            tileGrid.children[i].style.backgroundColor = randomColor;
+        // looping through the row containers
+        for (let i = 0; i< tileGrid.childElementCount; i++) {
+            for (let j =0; j<tileGrid.children[0].childElementCount; j++) {
+                let randomColor = colorValues[randomInteger(arrayLength)];
+                tileGrid.children[i].children[j].style.backgroundColor = randomColor;
+
+            }
         }
     }
     // // if not adjacent radio checked
