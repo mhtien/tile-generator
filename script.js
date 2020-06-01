@@ -145,8 +145,8 @@ function addColoursAsCSSClass() {
     style.innerHTML = "";
 
     // assigning new styles to classes
-    for (let i=0; i<colorValues.length; i++) {
-        style.insertAdjacentHTML('beforeend', `.tile-color${i} {background-color:${colorValues[i]}}`)  
+    for (let i = 0; i < colorValues.length; i++) {
+        style.insertAdjacentHTML('beforeend', `.tile-color${i} {background-color:${colorValues[i]}}`)
     }
 
 }
@@ -156,7 +156,7 @@ function assignRandomColors() {
     let colorRange = document.getElementsByClassName("color-input");
     let colorRangeClass = [];
     // pushing class value names into array
-    for (let i= 0; i<colorRange.length; i++) {
+    for (let i = 0; i < colorRange.length; i++) {
         colorRangeClass.push(`tile-color${i}`);
     }
 
@@ -164,44 +164,49 @@ function assignRandomColors() {
     for (let i = 0; i < tileGrid.childElementCount; i++) {
         for (let j = 0; j < tileGrid.children[0].childElementCount; j++) {
             let randomColor = colorRangeClass[randomInteger(colorRangeClass.length)];
-            tileGrid.children[i].children[j].classList.add("class",randomColor);
+            tileGrid.children[i].children[j].classList.add("class", randomColor);
         }
     }
 }
 
+// This currently needs updating
 function assignNotAdjacentColors() {
     // getting the colours from picker
     let colorRange = document.getElementsByClassName("color-input");
-    let colorValues = [];
-
-    // pushing colour values into array
+    let colorRangeClass = [];
+    // pushing class value names into array
     for (let i = 0; i < colorRange.length; i++) {
-        colorValues.push(colorRange[i].value);
+        colorRangeClass.push(`tile-color${i}`);
     }
     // removing array element by value
     for (let i = 0; i < tileGrid.childElementCount; i++) {
         for (let j = 0; j < tileGrid.children[0].childElementCount; j++) {
-            if (i === 0) {
-                if (j === 0) {
-                    let randomColor = colorValues[randomInteger(colorValues.length)];
-                    tileGrid.children[i].children[j].style.backgroundColor = randomColor;
-                } else {
-                    let possibleColors = [...colorValues];
-                    // targets the color of previous tile
-                    let previousColor = tileGrid.children[i].children[j - 1].style.backgroundColor;
-                    // targets index of said color in array
-                    let previousColorIndex = possibleColors.indexOf(previousColor);
-                    // removes color from array
-                    possibleColors.splice(previousColorIndex, 1);
-                    // random color that does nto include previous tile color
-                    let randomColor = colorValues[randomInteger(possibleColors.length)];
-                    tileGrid.children[i].children[j].style.backgroundColor = randomColor;
-                }
-
+            if (i === 0 && j === 0) {
+                let randomColor = colorRangeClass[randomInteger(colorRangeClass.length)];
+                tileGrid.children[i].children[j].classList.add("class", randomColor);
             }
+            if (i === 0 && j > 0) {
+                let possibleColors = [...colorRangeClass];
+                console.log("1",possibleColors);
+                // targets the color of previous tile
+                for (let k = 0; k < colorRangeClass.length; k++) {
+                    if (tileGrid.children[i].children[j - 1].classList.contains(colorRangeClass[k])) {
+                        possibleColors.splice(k, 1);
+                    }
+                }
+                // random color that does not include previous tile color
+                console.log("2",possibleColors);
+                let randomColor = possibleColors[randomInteger(possibleColors.length)];
+                console.log(randomColor);
+                tileGrid.children[i].children[j].classList.add("class", randomColor);
+               
+            }
+
         }
     }
 }
+
+
 // initial tile grid
 createGrid();
 
