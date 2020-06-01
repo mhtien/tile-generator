@@ -187,20 +187,56 @@ function assignNotAdjacentColors() {
             }
             if (i === 0 && j > 0) {
                 let possibleColors = [...colorRangeClass];
-                console.log("1",possibleColors);
                 // targets the color of previous tile
                 for (let k = 0; k < colorRangeClass.length; k++) {
-                    if (tileGrid.children[i].children[j - 1].classList.contains(colorRangeClass[k])) {
+                    if (tileGrid.children[i].children[j - 1].classList.contains(possibleColors[k])) {
                         possibleColors.splice(k, 1);
                     }
                 }
                 // random color that does not include previous tile color
-                console.log("2",possibleColors);
                 let randomColor = possibleColors[randomInteger(possibleColors.length)];
-                console.log(randomColor);
                 tileGrid.children[i].children[j].classList.add("class", randomColor);
-               
             }
+            if (i > 0 && j === 0) {
+                let possibleColors = [...colorRangeClass];
+
+                for (let k = 0; k < colorRangeClass.length; k++) {
+                    // target color of tile above
+                    if (tileGrid.children[i - 1].children[j].classList.contains(possibleColors[k])) {
+                        possibleColors.splice(k, 1);
+                    }
+
+                }
+                // random color that does not include previous tile color
+                let randomColor = possibleColors[randomInteger(possibleColors.length)];
+                tileGrid.children[i].children[j].classList.add("class", randomColor);
+            }
+
+
+            // something wrong with this part
+            if (i > 0 && j > 0) {
+                let possibleColors = [...colorRangeClass];
+
+                for (let k = 0; k < colorRangeClass.length; k++) {
+                    // targets the color of previous tile
+                    if (tileGrid.children[i].children[j - 1].classList.contains(possibleColors[k])) {
+                        possibleColors.splice(k, 1);
+                    }
+                    
+                    // target color of tile above
+                    if (tileGrid.children[i - 1].children[j].classList.contains(possibleColors[k])) {
+                        possibleColors.splice(k, 1);
+                    }
+                   
+                }
+                // random color that does not include previous tile color
+                let randomColor = possibleColors[randomInteger(possibleColors.length)];
+                tileGrid.children[i].children[j].classList.add("class", randomColor);
+
+
+            }
+
+
 
         }
     }
