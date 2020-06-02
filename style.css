@@ -1,6 +1,6 @@
-*{
+/* *{
     border: green 1px solid;
-}
+} */
 
 body {
     margin: 0;
@@ -45,6 +45,10 @@ label {
     border-radius: 3px;
     border: none;
     
+}
+
+.row-container {
+    text-align: center;
 }
 
 .tile-grid {

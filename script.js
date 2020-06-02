@@ -17,11 +17,29 @@ let tileGrid = document.getElementsByClassName("tile-grid")[0];
 let randomBtn = document.getElementById("randomise");
 let notAdjacentBtn = document.getElementById("not-adjacent");
 
+
 // creating new tiles 
-function addTiles() {
+function addTiles(event) {
     let newTile = document.createElement("div");
     newTile.setAttribute("class", "tile");
-    tileGrid.appendChild(newTile);
+    event.appendChild(newTile);
+}
+
+function addNewRow(event) {
+    // targets row number
+    let rowNumber = document.getElementsByClassName("row-input")[0].value;
+
+    let newRow = document.createElement("div");
+    newRow.setAttribute("class", "row-container");
+    let i = 0;
+    do {
+        addTiles(newRow);
+        i++;
+    }
+    while (i < rowNumber);
+
+    event.appendChild(newRow);
+
 }
 
 // adding additional colour picker
@@ -64,25 +82,33 @@ function showHexColor(event) {
 // creating the grid and filling with tiles
 function createGrid() {
 
-    // create grid
-    let rowNumber = document.getElementsByClassName("row-input")[0].value;
+    // targets column number
     let columnNumber = document.getElementsByClassName("column-input")[0].value;
-    let totalTiles = rowNumber * columnNumber;
-
-    // adding styling to grid - HTML
-    let rowWidth = rowNumber * 22 + "px";
-    tileGrid.style.width = rowWidth;
 
     // clearing any existing tiles
     while (tileGrid.firstChild) {
         tileGrid.firstChild.remove();
     }
-    // adding new total of tiles
-    for (let i = 0; i < totalTiles; i++) {
-        addTiles();
+
+    // adding rows to create grid
+    let i = 0;
+    do {
+        addNewRow(tileGrid);
+        i++;
     }
 
-    assignColors();
+    while (i < columnNumber);
+
+    addColoursAsCSSClass();
+
+    if (randomBtn.checked === true) {
+        assignRandomColors();
+    }
+
+    if (notAdjacentBtn.checked === true) {
+        assignNotAdjacentColors();
+    }
+
 }
 
 function randomiseBtnPress() {
@@ -101,12 +127,10 @@ function notAdjacentBtnPress() {
 }
 
 function randomInteger(num) {
-    return Math.floor(Math.random()*num);
+    return Math.floor(Math.random() * num);
 }
 
-
-// obtaining colour values
-function assignColors() {
+function addColoursAsCSSClass() {
     // getting the colours from picker
     let colorRange = document.getElementsByClassName("color-input");
     let colorValues = [];
@@ -116,42 +140,109 @@ function assignColors() {
         colorValues.push(colorRange[i].value);
     }
 
-    // defining array length
-    let arrayLength = colorValues.length;
+    // clearing any html in style
+    let style = document.getElementById("style");
+    style.innerHTML = "";
 
-    // if randomise radio checked
-    if (randomBtn.checked === true) {
-        // assigning random colour to tiles
-        for (let i = 0; i < tileGrid.childElementCount; i++) {
-            // get random colour
-            let randomColor = colorValues[randomInteger(arrayLength)];
-            tileGrid.children[i].style.backgroundColor = randomColor;
+    // assigning new styles to classes
+    for (let i = 0; i < colorValues.length; i++) {
+        style.insertAdjacentHTML('beforeend', `.tile-color${i} {background-color:${colorValues[i]}}`)
+    }
+
+}
+// obtaining colour values
+function assignRandomColors() {
+    // getting the colours from picker
+    let colorRange = document.getElementsByClassName("color-input");
+    let colorRangeClass = [];
+    // pushing class value names into array
+    for (let i = 0; i < colorRange.length; i++) {
+        colorRangeClass.push(`tile-color${i}`);
+    }
+
+    // looping through the row containers and assign colours by class
+    for (let i = 0; i < tileGrid.childElementCount; i++) {
+        for (let j = 0; j < tileGrid.children[0].childElementCount; j++) {
+            let randomColor = colorRangeClass[randomInteger(colorRangeClass.length)];
+            tileGrid.children[i].children[j].classList.add("class", randomColor);
         }
     }
-    // // if not adjacent radio checked
-    // removing array element by value
-    // let possibleColors = [...colorValue];
-    // let removeColor = "value";
-    // possibleColors.splice(removeColor,1)
-
-    // if (notAdjacentBtnPress === true) {
-    //     for (let i = 0; i < tileGrid.childElementCount; i++) {
-    //         // get random colour
-    //         let randomColor = colorValues[randomInteger(arrayLength)];
-    //         tileGrid.children[i].style.backgroundColor = randomColor;
-
-    //         if (i > 0) {
-    //             let x = tileGrid.children[i].style.backgroundColor;
-    //             let y = tileGrid.children[i - 1].style.backgroundColor
-    //             if (x === y) {
-    //                 let randomColor = colorValues[randomInteger(arrayLength)]
-    //                 tileGrid.children[i].style.backgroundColor = randomColor;
-    //             }
-    //         }
-
-    //     }
-    // }
 }
+
+// This currently needs updating
+function assignNotAdjacentColors() {
+    // getting the colours from picker
+    let colorRange = document.getElementsByClassName("color-input");
+    let colorRangeClass = [];
+    // pushing class value names into array
+    for (let i = 0; i < colorRange.length; i++) {
+        colorRangeClass.push(`tile-color${i}`);
+    }
+    // removing array element by value
+    for (let i = 0; i < tileGrid.childElementCount; i++) {
+        for (let j = 0; j < tileGrid.children[0].childElementCount; j++) {
+            if (i === 0 && j === 0) {
+                let randomColor = colorRangeClass[randomInteger(colorRangeClass.length)];
+                tileGrid.children[i].children[j].classList.add("class", randomColor);
+            }
+            if (i === 0 && j > 0) {
+                let possibleColors = [...colorRangeClass];
+                // targets the color of previous tile
+                for (let k = 0; k < colorRangeClass.length; k++) {
+                    if (tileGrid.children[i].children[j - 1].classList.contains(possibleColors[k])) {
+                        possibleColors.splice(k, 1);
+                    }
+                }
+                // random color that does not include previous tile color
+                let randomColor = possibleColors[randomInteger(possibleColors.length)];
+                tileGrid.children[i].children[j].classList.add("class", randomColor);
+            }
+            if (i > 0 && j === 0) {
+                let possibleColors = [...colorRangeClass];
+
+                for (let k = 0; k < colorRangeClass.length; k++) {
+                    // target color of tile above
+                    if (tileGrid.children[i - 1].children[j].classList.contains(possibleColors[k])) {
+                        possibleColors.splice(k, 1);
+                    }
+
+                }
+                // random color that does not include previous tile color
+                let randomColor = possibleColors[randomInteger(possibleColors.length)];
+                tileGrid.children[i].children[j].classList.add("class", randomColor);
+            }
+
+
+            // something wrong with this part
+            if (i > 0 && j > 0) {
+                let possibleColors = [...colorRangeClass];
+
+                for (let k = 0; k < colorRangeClass.length; k++) {
+                    // targets the color of previous tile
+                    if (tileGrid.children[i].children[j - 1].classList.contains(possibleColors[k])) {
+                        possibleColors.splice(k, 1);
+                    }
+                    
+                    // target color of tile above
+                    if (tileGrid.children[i - 1].children[j].classList.contains(possibleColors[k])) {
+                        possibleColors.splice(k, 1);
+                    }
+                   
+                }
+                // random color that does not include previous tile color
+                let randomColor = possibleColors[randomInteger(possibleColors.length)];
+                tileGrid.children[i].children[j].classList.add("class", randomColor);
+
+
+            }
+
+
+
+        }
+    }
+}
+
+
 // initial tile grid
 createGrid();
 
