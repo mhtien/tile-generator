@@ -188,7 +188,7 @@ function assignNotAdjacentColors() {
             if (i === 0 && j > 0) {
                 let possibleColors = [...colorRangeClass];
                 // targets the color of previous tile
-                for (let k = 0; k < colorRangeClass.length; k++) {
+                for (let k = 0; k < possibleColors.length; k++) {
                     if (tileGrid.children[i].children[j - 1].classList.contains(possibleColors[k])) {
                         possibleColors.splice(k, 1);
                     }
@@ -200,7 +200,7 @@ function assignNotAdjacentColors() {
             if (i > 0 && j === 0) {
                 let possibleColors = [...colorRangeClass];
 
-                for (let k = 0; k < colorRangeClass.length; k++) {
+                for (let k = 0; k < possibleColors.length; k++) {
                     // target color of tile above
                     if (tileGrid.children[i - 1].children[j].classList.contains(possibleColors[k])) {
                         possibleColors.splice(k, 1);
@@ -217,11 +217,12 @@ function assignNotAdjacentColors() {
             if (i > 0 && j > 0) {
                 let possibleColors = [...colorRangeClass];
 
-                for (let k = 0; k < colorRangeClass.length; k++) {
+                for (let k = 0; k < possibleColors.length; k++) {
                     // targets the color of previous tile
                     if (tileGrid.children[i].children[j - 1].classList.contains(possibleColors[k])) {
                         possibleColors.splice(k, 1);
                     }
+                    
                     
                     // target color of tile above
                     if (tileGrid.children[i - 1].children[j].classList.contains(possibleColors[k])) {
@@ -233,7 +234,8 @@ function assignNotAdjacentColors() {
                 let randomColor = possibleColors[randomInteger(possibleColors.length)];
                 tileGrid.children[i].children[j].classList.add("class", randomColor);
 
-
+                console.log("1",possibleColors);
+                console.log("2",randomColor);
             }
 
 
