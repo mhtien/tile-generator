@@ -17,8 +17,7 @@ let tileGrid = document.getElementsByClassName("tile-grid")[0];
 let randomBtn = document.getElementById("randomise");
 let notAdjacentBtn = document.getElementById("not-adjacent");
 
-
-// creating new tiles 
+// creating new tiles
 function addTiles(event) {
     let newTile = document.createElement("div");
     newTile.setAttribute("class", "tile");
@@ -35,11 +34,9 @@ function addNewRow(event) {
     do {
         addTiles(newRow);
         i++;
-    }
-    while (i < rowNumber);
+    } while (i < rowNumber);
 
     event.appendChild(newRow);
-
 }
 
 // adding additional colour picker
@@ -68,7 +65,7 @@ function removeColor() {
         colorPalette.lastChild.remove();
     } else {
         // need to add text to be revealed eventually
-        alert("you need atleast one color!")
+        alert("you need atleast one color!");
     }
 }
 
@@ -81,7 +78,6 @@ function showHexColor(event) {
 
 // creating the grid and filling with tiles
 function createGrid() {
-
     // targets column number
     let columnNumber = document.getElementsByClassName("column-input")[0].value;
 
@@ -95,9 +91,7 @@ function createGrid() {
     do {
         addNewRow(tileGrid);
         i++;
-    }
-
-    while (i < columnNumber);
+    } while (i < columnNumber);
 
     addColoursAsCSSClass();
 
@@ -108,7 +102,6 @@ function createGrid() {
     if (notAdjacentBtn.checked === true) {
         assignNotAdjacentColors();
     }
-
 }
 
 function randomiseBtnPress() {
@@ -146,9 +139,11 @@ function addColoursAsCSSClass() {
 
     // assigning new styles to classes
     for (let i = 0; i < colorValues.length; i++) {
-        style.insertAdjacentHTML('beforeend', `.tile-color${i} {background-color:${colorValues[i]}}`)
+        style.insertAdjacentHTML(
+            "beforeend",
+            `.tile-color${i} {background-color:${colorValues[i]}}`
+        );
     }
-
 }
 // obtaining colour values
 function assignRandomColors() {
@@ -212,42 +207,59 @@ function assignNotAdjacentColors() {
                 tileGrid.children[i].children[j].classList.add("class", randomColor);
             }
 
-
-            // something wrong with this part
+            // to check left and above tiles
             if (i > 0 && j > 0) {
                 let possibleColors = [...colorRangeClass];
 
                 for (let k = 0; k < possibleColors.length; k++) {
                     // targets the color of previous tile
-                    if (tileGrid.children[i].children[j - 1].classList.contains(possibleColors[k])) {
+                    if (
+                        tileGrid.children[i].children[j - 1].classList.contains(
+                            possibleColors[k]
+                        )
+                    ) {
                         possibleColors.splice(k, 1);
                     }
-                    
-                    
-                    // target color of tile above
-                    if (tileGrid.children[i - 1].children[j].classList.contains(possibleColors[k])) {
-                        possibleColors.splice(k, 1);
-                    }
-                   
                 }
+
+                // target color of tile above
+                for (let m = 0; m < possibleColors.length; m++) {
+                    if (
+                        tileGrid.children[i - 1].children[j].classList.contains(
+                            possibleColors[m]
+                        )
+                    ) {
+                        possibleColors.splice(m, 1);
+                    }
+                }
+
                 // random color that does not include previous tile color
                 let randomColor = possibleColors[randomInteger(possibleColors.length)];
                 tileGrid.children[i].children[j].classList.add("class", randomColor);
-
-                console.log("1",possibleColors);
-                console.log("2",randomColor);
             }
-
-
-
         }
     }
 }
+// function checkLeftTileColor() {
 
+//     for (let k = 0; k < possibleColors.length; k++) {
+//         if (tileGrid.children[i].children[j - 1].classList.contains(possibleColors[k])) {
+//             possibleColors.splice(k, 1);
+//         }
+//     }
+// }
+
+// function checkAboveTileColor() {
+//     for (let k = 0; k < colorRangeClass.length; k++) {
+//         // target color of tile above
+//         if (tileGrid.children[i - 1].children[j].classList.contains(possibleColors[k])) {
+//             possibleColors.splice(k, 1);
+//         }
+//     }
+// }
 
 // initial tile grid
 createGrid();
-
 
 // event listeners
 generateBtn.addEventListener("click", createGrid);
