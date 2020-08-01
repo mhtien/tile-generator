@@ -51,19 +51,16 @@ function addNewRow(event) {
 function addColor() {
   cloneFragment();
   let newColor = cloneDocumentFragment.querySelector(".color-picker");
-  let colourPickers = form.querySelectorAll(".color-picker");
-  let currentNumOfPickers = colourPickers.length - 1;
-  let lastColorPicker = colourPickers[currentNumOfPickers];
-  lastColorPicker.insertAdjacentElement("afterend", newColor);
+  let colorPickerContainer = document.querySelector(".color-picker-container");
+  colorPickerContainer.appendChild(newColor);
 }
 
 // removing last colour picker
 function removeColor() {
   let colourPickers = form.querySelectorAll(".color-picker");
-  let currentNumOfPickers = colourPickers.length - 1;
-  let lastColorPicker = colourPickers[currentNumOfPickers];
+  let colorPickerContainer = document.querySelector(".color-picker-container");
   if (colourPickers.length > 1) {
-    lastColorPicker.remove();
+    colorPickerContainer.lastChild.remove();
   } else {
     // need to add text to be revealed eventually
     alert("you need atleast one colour!");
@@ -243,5 +240,11 @@ generateBtn.addEventListener("click", (event) => {
   event.preventDefault();
   createGrid();
 });
-addColorBtn.addEventListener("click", addColor);
-removeColorBtn.addEventListener("click", removeColor);
+addColorBtn.addEventListener("click", (event) => {
+  event.preventDefault();
+  addColor();
+});
+removeColorBtn.addEventListener("click", (event) => {
+  event.preventDefault();
+  removeColor();
+});
