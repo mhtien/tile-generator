@@ -51,7 +51,12 @@ function addNewRow(event) {
 function addColor() {
   cloneFragment();
   let newColor = cloneDocumentFragment.querySelector(".color-picker");
-  colorPalette.appendChild(newColor);
+  let colourPickers = colorPalette.querySelectorAll(".color-picker");
+  let currentNumOfPickers = colourPickers.length;
+  colourPickers[currentNumOfPickers - 1].insertAdjacentElement(
+    "afterend",
+    newColor
+  );
 }
 
 // removing colour picker
@@ -96,21 +101,6 @@ function createGrid() {
 
   if (notAdjacentBtn.checked === true) {
     assignNotAdjacentColors();
-  }
-}
-
-function randomiseBtnPress() {
-  if (randomBtn.checked === true) {
-    notAdjacentBtn.checked = false;
-  } else {
-    notAdjacentBtn.checked = true;
-  }
-}
-function notAdjacentBtnPress() {
-  if (notAdjacentBtn.checked === true) {
-    randomBtn.checked = false;
-  } else {
-    randomBtn.checked = true;
   }
 }
 
@@ -271,6 +261,3 @@ generateBtn.addEventListener("click", (event) => {
 });
 addColorBtn.addEventListener("click", addColor);
 removeColorBtn.addEventListener("click", removeColor);
-
-randomBtn.addEventListener("click", randomiseBtnPress);
-notAdjacentBtn.addEventListener("click", notAdjacentBtnPress);

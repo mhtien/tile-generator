@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="style.css" />
     <style id="style"></style>
     <title>Tile Pattern Generator</title>
@@ -16,47 +16,51 @@
       <div class="variables">
         <div class="grid-option">
           <div class="row-variable">
-            Rows<input class="row-input" type="number" value="5" />
+            <label for="row-input">Rows</label>
+            <input class="row-input" name="row-input" id="row-input"  type="number" value="5"/>
           </div>
           <div class="column-variable">
-            Column<input class="column-input" type="number" value="5" />
+            <label for="column-input">Columns</label>
+            <input class="column-input" name="column-input" id="column-input" type="number" value="5"/>
           </div>
         </div>
         <div class="color-btns">
-          <button class="add-color-btn">Add color</button>
-          <button class="remove-color-btn">Remove color</button>
+          <button class="add-color-btn" aria-label="add another colour picker">Add color</button>
+          <button class="remove-color-btn" aria-label="remove the previous colour picker">Remove color</button>
         </div>
         <form>
           <div class="color-picker" oninput="showHexColor(event)">
             <label>Tile Colour:</label>
-            <input class="color-input" type="color" value="#c0c0c0" />
+            <input class="color-input" type="color" name="color" value="#c0c0c0" aria-label="color-picker"/>
           </div>
           <div class="color-picker" oninput="showHexColor(event)">
             <label>Tile Colour:</label>
-            <input class="color-input" type="color" value="#008080" />
+            <input class="color-input" type="color" name="color" value="#008080" aria-label="color-picker"/>
           </div>
           <div class="color-picker" oninput="showHexColor(event)">
             <label>Tile Colour:</label>
-            <input class="color-input" type="color" value="#8080ff" />
+            <input class="color-input" type="color" name="color" value="#8080ff" aria-label="color-picker"/>
           </div>
+          <input
+            class="generate-type"
+            type="radio"
+            name="generate-type"
+            id="randomise"
+            value="randomise"
+            checked
+          />
+          <label for="randomise">Randomise</label>
+          <input
+            class="generate-type"
+            type="radio"
+            name="generate-type"
+            id="not-adjacent"
+            value="notadjacent"
+          />
+          <label for="not-adjacent">Not Adjacent</label>
+          <button class="generate-btn">Generate!</button>
         </div>
-        <input
-          class="generate-type"
-          type="radio"
-          id="randomise"
-          value="randomise"
-          checked="true"
-        />
-        <label for="randomise">Randomise</label>
-        <input
-          class="generate-type"
-          type="radio"
-          id="not-adjacent"
-          value="notadjacent"
-        />
-        <label for="not-adjacent">Not Adjacent</label>
 
-        <button class="generate-btn">Generate!</button>
       </form>
       <div class="tile-grid"></div>
     </main>
@@ -66,7 +70,7 @@
       <div class="row-container"></div>
       <div class="color-picker" oninput="showHexColor(event)">
         <label>Tile Colour:</label>
-        <input class="color-input" type="color" value="#c0c0c0" />
+        <input class="color-input" type="color" id="color" value="#c0c0c0" aria-label="color-picker"/>
       </div>
     </template>
     <script src="script.js"></script>
