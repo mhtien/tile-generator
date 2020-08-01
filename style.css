@@ -3,87 +3,67 @@
 } */
 
 body {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  font-family: "Noto Sans TC", sans-serif;
+  text-align: center;
+  max-width: 80%;
+  margin: auto;
 }
 
 h1 {
-    font-style: arial;
+  font-style: arial;
+}
+input[type="number"] {
+  width: 5rem;
+  height: 1.5rem;
 }
 
-label {
-    font-size: small;
-}
-.heading {
-    text-align: center;
-}
-
-.variables {
-    /* display: inline-block; */
-    position: relative;
-    height: 100%;
-    width: 100%;
-    background-color: #C4D8E7;
+form {
+  background-color: rgb(178, 189, 189);
 }
 
 .row-variable,
 .column-variable {
-    display: inline;
+  display: inline-block;
+}
+
+.add-color,
+.remove-color {
+  display: inline-block;
 }
 
 .color-picker {
-    display: inline;
-
-}
-
-.color-btns {
-}
-
-.color-btns button {
-    position: relative;
-    margin: auto;
-    border-radius: 3px;
-    border: none;
-    
-}
-
-.row-container {
-    text-align: center;
+  display: inline-block;
 }
 
 .tile-grid {
-    position: relative;
-    /* display: inline-block; */
-    width: 100%;
-    height: auto;
-    margin: auto;
-    background-color: #ECF4F9;
-    min-height: 500px;
-    /* removes default space when tiles start on new row */
-    font-size: 0;
+  position: relative;
+  background-color: #ecf4f9;
+  min-height: 500px;
+  /* removes default space when tiles start on new row */
+  font-size: 0;
 }
 
 .tile {
-    position: relative;
-    display: inline-block;
-    height: 20px;
-    width: 20px;
-    margin: 1px;
-
+  position: relative;
+  display: inline-block;
+  height: 2rem;
+  width: 2rem;
+  margin: 0.1rem;
 }
 
 .grid-option {
-    display: inline;
+  display: inline;
 }
 
 .grid-option input {
-    margin-left: 10px;
-    width: 50px;
+  margin-left: 10px;
+  width: 50px;
 }
 
 .generate-btn {
-    display: block;
-    margin: auto;
-    height: 30px;
-    border-radius: 3px;
+  display: block;
+  margin: auto;
+  height: 30px;
+  border-radius: 3px;
 }
