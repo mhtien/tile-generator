@@ -1,57 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <style id= "style">
-
-    </style>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <style id="style"></style>
     <title>Tile Pattern Generator</title>
-</head>
+  </head>
 
-<body>
-    <div class="heading">
-        <h1>Tile Pattern Generator</h1>
-    </div>
-        <div class="variables">
-            <div class="grid-option">
-                <div class="row-variable">Rows<input class="row-input" type="number" value="5">
-                </div>
-                <div class="column-variable">Column<input class="column-input" type="number" value="5">
-                </div>
-            </div>
-            <div class="color-btns">
-                <button class="add-color-btn">Add color</button>
-                <button class="remove-color-btn">Remove color</button>
-            </div>
-            <div class="color-palette">
-                <div class="color-picker" oninput="showHexColor(event)">
-                    <label>Tile Colour:</label>
-                    <input class="color-input" type="color" value="#c0c0c0">
-                </div>
-                <div class="color-picker" oninput="showHexColor(event)">
-                    <label>Tile Colour:</label>
-                    <input class="color-input" type="color" value="#008080">
-                </div>
-                <div class="color-picker" oninput="showHexColor(event)">
-                    <label>Tile Colour:</label>
-                    <input class="color-input" type="color" value="#8080ff">
-                </div>
-            </div>
-            <input class="generate-type" type="radio" id="randomise" value="randomise" checked=true>
-            <label for="randomise">Randomise</label>
-            <input class="generate-type" type="radio" id="not-adjacent" value="notadjacent">
-            <label for="not-adjacent">Not Adjacent</label>
-
-            <button class="generate-btn">Generate!</button>
+  <body>
+    <header class="heading">
+      <h1>Tile Pattern Generator</h1>
+    </header>
+    <main>
+      <div class="variables">
+        <div class="grid-option">
+          <div class="row-variable">
+            Rows<input class="row-input" type="number" value="5" />
+          </div>
+          <div class="column-variable">
+            Column<input class="column-input" type="number" value="5" />
+          </div>
         </div>
-    <div class="tile-grid">
-    </div>
+        <div class="color-btns">
+          <button class="add-color-btn">Add color</button>
+          <button class="remove-color-btn">Remove color</button>
+        </div>
+        <form>
+          <div class="color-picker" oninput="showHexColor(event)">
+            <label>Tile Colour:</label>
+            <input class="color-input" type="color" value="#c0c0c0" />
+          </div>
+          <div class="color-picker" oninput="showHexColor(event)">
+            <label>Tile Colour:</label>
+            <input class="color-input" type="color" value="#008080" />
+          </div>
+          <div class="color-picker" oninput="showHexColor(event)">
+            <label>Tile Colour:</label>
+            <input class="color-input" type="color" value="#8080ff" />
+          </div>
+        </div>
+        <input
+          class="generate-type"
+          type="radio"
+          id="randomise"
+          value="randomise"
+          checked="true"
+        />
+        <label for="randomise">Randomise</label>
+        <input
+          class="generate-type"
+          type="radio"
+          id="not-adjacent"
+          value="notadjacent"
+        />
+        <label for="not-adjacent">Not Adjacent</label>
+
+        <button class="generate-btn">Generate!</button>
+      </form>
+      <div class="tile-grid"></div>
+    </main>
+    <footer></footer>
+    <template>
+      <div class="tile"></div>
+      <div class="row-container"></div>
+      <div class="color-picker" oninput="showHexColor(event)">
+        <label>Tile Colour:</label>
+        <input class="color-input" type="color" value="#c0c0c0" />
+      </div>
+    </template>
     <script src="script.js"></script>
-
-   
-</body>
-
+  </body>
 </html>
