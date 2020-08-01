@@ -1,21 +1,21 @@
+// targets colour palette
+const form = document.querySelector("form");
+
 // target generate button
-const generateBtn = document.getElementsByClassName("generate-btn")[0];
+const generateBtn = document.querySelector(".generate-btn");
 
 // target add colour button
-const addColorBtn = document.getElementsByClassName("add-color-btn")[0];
+const addColorBtn = document.querySelector(".add-color-btn");
 
 // target remove colour button
-const removeColorBtn = document.getElementsByClassName("remove-color-btn")[0];
-
-// targets colour palette
-const colorPalette = document.querySelector("form");
+const removeColorBtn = document.querySelector(".remove-color-btn");
 
 // targets tile grid div container
-let tileGrid = document.getElementsByClassName("tile-grid")[0];
+let tileGrid = document.querySelector(".tile-grid");
 
 // targets types of generating grid
-let randomBtn = document.getElementById("randomise");
-let notAdjacentBtn = document.getElementById("not-adjacent");
+let randomBtn = document.querySelector("#randomise");
+let notAdjacentBtn = document.querySelector("#not-adjacent");
 
 // targetting template
 let template = document.querySelector("template");
@@ -51,35 +51,36 @@ function addNewRow(event) {
 function addColor() {
   cloneFragment();
   let newColor = cloneDocumentFragment.querySelector(".color-picker");
-  let colourPickers = colorPalette.querySelectorAll(".color-picker");
-  let currentNumOfPickers = colourPickers.length;
-  colourPickers[currentNumOfPickers - 1].insertAdjacentElement(
-    "afterend",
-    newColor
-  );
+  let colourPickers = form.querySelectorAll(".color-picker");
+  let currentNumOfPickers = colourPickers.length - 1;
+  let lastColorPicker = colourPickers[currentNumOfPickers];
+  lastColorPicker.insertAdjacentElement("afterend", newColor);
 }
 
-// removing colour picker
+// removing last colour picker
 function removeColor() {
-  if (colorPalette.childElementCount > 1) {
-    colorPalette.lastChild.remove();
+  let colourPickers = form.querySelectorAll(".color-picker");
+  let currentNumOfPickers = colourPickers.length - 1;
+  let lastColorPicker = colourPickers[currentNumOfPickers];
+  if (colourPickers.length > 1) {
+    lastColorPicker.remove();
   } else {
     // need to add text to be revealed eventually
-    alert("you need atleast one color!");
+    alert("you need atleast one colour!");
   }
 }
 
 // color picker value to show above color picker
 function showHexColor(event) {
   let currentTarget = event.currentTarget;
-  let colorValue = currentTarget.children[1].value;
-  currentTarget.children[0].innerText = colorValue;
+  let colorValue = currentTarget.querySelector("input").value;
+  currentTarget.querySelector("label").textContent = colorValue;
 }
 
 // creating the grid and filling with tiles
 function createGrid() {
   // targets column number
-  let columnNumber = document.getElementsByClassName("column-input")[0].value;
+  let columnNumber = document.querySelector(".column-input").value;
 
   // clearing any existing tiles
   while (tileGrid.firstChild) {
@@ -233,23 +234,6 @@ function assignNotAdjacentColors() {
     }
   }
 }
-// function checkLeftTileColor() {
-
-//     for (let k = 0; k < possibleColors.length; k++) {
-//         if (tileGrid.children[i].children[j - 1].classList.contains(possibleColors[k])) {
-//             possibleColors.splice(k, 1);
-//         }
-//     }
-// }
-
-// function checkAboveTileColor() {
-//     for (let k = 0; k < colorRangeClass.length; k++) {
-//         // target color of tile above
-//         if (tileGrid.children[i - 1].children[j].classList.contains(possibleColors[k])) {
-//             possibleColors.splice(k, 1);
-//         }
-//     }
-// }
 
 // initial tile grid
 createGrid();
