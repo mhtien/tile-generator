@@ -6,10 +6,7 @@
     <link rel="stylesheet" href="style.css" />
     <style id="style"></style>
     <title>Tile Pattern Generator</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@900&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Arvo:wght@700&family=Ubuntu&display=swap" rel="stylesheet">
   </head>
 
   <body>
@@ -17,90 +14,98 @@
       <h1>Tile Pattern Generator</h1>
     </header>
     <main>
-      <form>
-        <div class="row-variable">
-          <label for="row-input">Rows</label>
-          <input
-            class="row-input"
-            name="row-input"
-            id="row-input"
-            type="number"
-            value="5"
-          />
-        </div>
-        <div class="column-variable">
-          <label for="column-input">Columns</label>
-          <input
-            class="column-input"
-            name="column-input"
-            id="column-input"
-            type="number"
-            value="5"
-          />
-        </div>
-        <div class="add-remove-color-pickers-container">
-          <button class="add-color-btn" aria-label="add another colour picker">
-            Add colour
-          </button>
-          <button
-            class="remove-color-btn"
-            aria-label="remove the previous colour picker"
-          >
-            Remove colour
-          </button>
-        </div>
-        <div class="color-picker-container">
-          <div class="color-picker" oninput="showHexColor(event)">
-            <label>Tile Colour:</label>
+      <section class="tile-generator__config">
+        <form>
+          <fieldset class="tile-generator__config__grid">
+            <legend>Grid</legend>
+            <label for="row-input">Rows</label>
             <input
-              class="color-input"
-              type="color"
-              name="color"
-              value="#c0c0c0"
-              aria-label="color-picker"
+              class="row-input"
+              name="row-input"
+              id="row-input"
+              type="number"
+              value="5"
             />
-          </div>
-          <div class="color-picker" oninput="showHexColor(event)">
-            <label>Tile Colour:</label>
+            <label for="column-input">Columns</label>
             <input
-              class="color-input"
-              type="color"
-              name="color"
-              value="#008080"
-              aria-label="color-picker"
+              class="column-input"
+              name="column-input"
+              id="column-input"
+              type="number"
+              value="5"
             />
-          </div>
-          <div class="color-picker" oninput="showHexColor(event)">
-            <label>Tile Colour:</label>
+          </fieldset>
+          <fieldset class="tile-generator__config__color">
+            <legend>Colour</legend>
+            <button
+              class="add-color-btn"
+              aria-label="add another colour picker"
+            >
+              Add colour
+            </button>
+            <button
+              class="remove-color-btn"
+              aria-label="remove the previous colour picker"
+            >
+              Remove colour
+            </button>
+            <div class="color-picker-container">
+              <div class="color-picker" oninput="showHexColor(event)">
+                <label>Tile Colour:</label>
+                <input
+                  class="color-input"
+                  type="color"
+                  name="color"
+                  value="#c0c0c0"
+                  aria-label="color-picker"
+                />
+              </div>
+              <div class="color-picker" oninput="showHexColor(event)">
+                <label>Tile Colour:</label>
+                <input
+                  class="color-input"
+                  type="color"
+                  name="color"
+                  value="#008080"
+                  aria-label="color-picker"
+                />
+              </div>
+              <div class="color-picker" oninput="showHexColor(event)">
+                <label>Tile Colour:</label>
+                <input
+                  class="color-input"
+                  type="color"
+                  name="color"
+                  value="#8080ff"
+                  aria-label="color-picker"
+                />
+              </div>
+            </div>
             <input
-              class="color-input"
-              type="color"
-              name="color"
-              value="#8080ff"
-              aria-label="color-picker"
+              class="generate-type"
+              type="radio"
+              name="generate-type"
+              id="randomise"
+              value="randomise"
+              checked
             />
-          </div>
-        </div>
-        <input
-          class="generate-type"
-          type="radio"
-          name="generate-type"
-          id="randomise"
-          value="randomise"
-          checked
-        />
-        <label for="randomise">Randomise</label>
-        <input
-          class="generate-type"
-          type="radio"
-          name="generate-type"
-          id="not-adjacent"
-          value="notadjacent"
-        />
-        <label for="not-adjacent">Not Adjacent</label>
-        <button class="generate-btn">Generate!</button>
-      </form>
-      <div class="tile-grid"></div>
+            <label for="randomise">Randomise</label>
+            <input
+              class="generate-type"
+              type="radio"
+              name="generate-type"
+              id="not-adjacent"
+              value="notadjacent"
+            />
+            <label for="not-adjacent">Not Adjacent</label>
+          </fieldset>
+          <fieldset class="tile-generator__config__tile">
+            <legend>Tile</legend>
+          </fieldset>
+          <input type="submit" value="Generate!" class="generate-btn" />
+        </form>
+      </section>
+      <section class="tile-generator__grid"></section>
     </main>
     <footer></footer>
     <template>

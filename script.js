@@ -11,7 +11,7 @@ const addColorBtn = document.querySelector(".add-color-btn");
 const removeColorBtn = document.querySelector(".remove-color-btn");
 
 // targets tile grid div container
-let tileGrid = document.querySelector(".tile-grid");
+let tileGrid = document.querySelector(".tile-generator__grid");
 
 // targets types of generating grid
 let randomBtn = document.querySelector("#randomise");

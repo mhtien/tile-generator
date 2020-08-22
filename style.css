@@ -2,29 +2,46 @@
     border: green 1px solid;
 } */
 
+:root {
+  --color-1: #edafb8;
+  --color-2: #f7e1d7;
+  --color-3: #dedbd2;
+  --color-4: #b0c4b1;
+  --color-5: #4a5759;
+  --title-font: 'Arvo', serif;
+  --text-font: 'Ubuntu', sans-serif;
+}
+
 body {
   margin: 0;
-  font-family: "Noto Sans TC", sans-serif;
-  text-align: center;
-  max-width: 80%;
-  margin: auto;
+  font-family: var(--text-font);
 }
 
 h1 {
-  font-style: arial;
+  font-family: var(--title-font);
+  text-align: center;
 }
+
+main {
+  display: flex;
+}
+
+.tile-generator__config {
+  background-color: var(--color-1);
+  margin-left: 0;
+}
+
+.tile-generator__grid {
+  margin: auto;
+}
+
+label {
+  font-size: 0.8rem;
+}
+
 input[type="number"] {
-  width: 5rem;
+  width: 3rem;
   height: 1.5rem;
-}
-
-form {
-  background-color: rgb(178, 189, 189);
-}
-
-.row-variable,
-.column-variable {
-  display: inline-block;
 }
 
 .add-color,
@@ -33,7 +50,7 @@ form {
 }
 
 .color-picker {
-  display: inline-block;
+  display: block;
 }
 
 .tile-grid {
