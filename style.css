@@ -99,3 +99,9 @@ input[type="number"] {
 .row-container {
   font-size: 0;
 }
+
+@media print {
+  header, .tile-generator__config {
+    display: none;
+  }
+}
