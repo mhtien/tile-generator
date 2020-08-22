@@ -33,6 +33,11 @@ main {
   width: 20%;
 }
 
+.tile-generator__config__tile input[type='text'] {
+  width: 5rem;
+  height: 1.5rem;
+}
+
 .tile-generator__grid {
   margin: auto;
 }
@@ -89,4 +94,8 @@ input[type="number"] {
 
 .hidden {
   display: none;
+}
+
+.row-container {
+  font-size: 0;
 }

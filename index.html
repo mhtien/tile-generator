@@ -83,6 +83,7 @@
                 />
               </div>
             </div>
+            <div>
             <input
               class="generate-type"
               type="radio"
@@ -92,6 +93,8 @@
               checked
             />
             <label for="randomise">Randomise</label>
+            </div>
+            <div>
             <input
               class="generate-type"
               type="radio"
@@ -100,20 +103,40 @@
               value="notadjacent"
             />
             <label for="not-adjacent">Not Adjacent</label>
+            </div>
           </fieldset>
           <fieldset class="tile-generator__config__tile">
             <legend>Tile Shape</legend>
-            <label for="tile-sqaure">Square</label>
-            <input type="radio" name="tile-type" id="tile-square" checked>
-            <label for="tile-rectangle">Rectagle</label>
-            <input type="radio" name="tile-type" id="tile-rectangle">
-            <input type="text" maxlength="3" title="Must contain numbers only" name="tile-height" id="tile-height" placeholder="height" aria-label="insert height here">
-            <input type="text" maxlength="3" title="Must contain numbers only" name="tile-width" id="tile-width" placeholder="width" aria-label="insert width here" class="hidden">
+            <div>
+              <input type="radio" name="tile-type" id="tile-square" checked>
+              <label for="tile-sqaure">Square</label>
+            </div>
+            <div>
+              <input type="radio" name="tile-type" id="tile-rectangle">
+              <label for="tile-rectangle">Rectagle</label>
+            </div>
+            <input type="text" maxlength="3" title="Must contain numbers only" name="tile-height" id="tile-height" placeholder="height in mm" aria-label="insert height here">
+            <input type="text" maxlength="3" title="Must contain numbers only" name="tile-width" id="tile-width" placeholder="width in mm" aria-label="insert width here" class="hidden">
+          </fieldset>
+          <fieldset class="tile-generator__config__scale">
+            <legend>Scale</legend>
+            <div>
+              <input type="radio" name="tile-scale" id="scale-10" value = 10>
+              <label for="scale-10">1:10</label>
+            </div>
+            <div>
+              <input type="radio" name="tile-scale" id="scale-25" checked value=25>
+              <label for="scale-25">1:25</label>
+            </div>
+            <div>
+              <input type="radio" name="tile-scale" id="scale-50" value=50>
+              <label for="scale-50">1:50</label>
+            </div>
           </fieldset>
           <input type="submit" value="Generate!" class="generate-btn" />
         </form>
       </section>
-      <section class="tile-generator__grid"></section>
+      <section class="tile-generator__grid">Generate Tiles Here!</section>
     </main>
     <footer></footer>
     <template>

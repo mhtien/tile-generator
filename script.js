@@ -97,6 +97,13 @@ function tileType () {
     // inserting html in style
   let styleTile = document.getElementById("style__tiletype");
 
+  const scales = document.querySelectorAll("input[name='tile-scale']");
+  const scalesArray = [...scales];
+  const filterScale = scalesArray.filter(scale => scale.checked);
+  const fixedScale = Number(filterScale[0].value);
+  tileHeight /= fixedScale;
+  tileWidth /= fixedScale;
+
   if (rectangleChecked) {
       styleTile.innerHTML = 
     `.tile {
