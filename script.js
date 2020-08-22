@@ -10,6 +10,10 @@ const addColorBtn = document.querySelector(".add-color-btn");
 // target remove colour button
 const removeColorBtn = document.querySelector(".remove-color-btn");
 
+// target tile shapes radio button
+const rectangleTileOption = document.querySelector("input[id='tile-rectangle']");
+const squareTileOption = document.querySelector("input[id='tile-square']");
+
 // targets tile grid div container
 let tileGrid = document.querySelector(".tile-generator__grid");
 
@@ -73,6 +77,18 @@ function showHexColor(event) {
   let colorValue = currentTarget.querySelector("input").value;
   currentTarget.querySelector("label").textContent = colorValue;
 }
+
+
+// Tile Shape
+function showWidthInput (event) {
+  let tileWidthInput = document.querySelector("input[id='tile-width']");
+  if (event.target.id === "tile-rectangle") {
+    tileWidthInput.classList.remove("hidden");
+  } else {
+    tileWidthInput.classList.add("hidden");
+  }
+}
+
 
 // creating the grid and filling with tiles
 function createGrid() {
@@ -248,3 +264,5 @@ removeColorBtn.addEventListener("click", (event) => {
   event.preventDefault();
   removeColor();
 });
+rectangleTileOption.addEventListener("click", showWidthInput);
+squareTileOption.addEventListener("click", showWidthInput)

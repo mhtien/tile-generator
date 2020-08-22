@@ -15,6 +15,7 @@
     </header>
     <main>
       <section class="tile-generator__config">
+        <h2>Tile Generator Config</h2>
         <form>
           <fieldset class="tile-generator__config__grid">
             <legend>Grid</legend>
@@ -100,7 +101,13 @@
             <label for="not-adjacent">Not Adjacent</label>
           </fieldset>
           <fieldset class="tile-generator__config__tile">
-            <legend>Tile</legend>
+            <legend>Tile Shape</legend>
+            <label for="tile-sqaure">Square</label>
+            <input type="radio" name="tile-type" id="tile-square" checked>
+            <label for="tile-rectangle">Rectagle</label>
+            <input type="radio" name="tile-type" id="tile-rectangle">
+            <input type="text" name="tile-height" id="tile-height" placeholder="height" aria-label="insert height here">
+            <input type="text" name="tile-width" id="tile-width" placeholder="width" aria-label="insert width here" class="hidden">
           </fieldset>
           <input type="submit" value="Generate!" class="generate-btn" />
         </form>
