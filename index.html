@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-    <style id="style"></style>
+    <style id="style__colors"></style>
+    <style id="style__tiletype"></style>
     <title>Tile Pattern Generator</title>
     <link href="https://fonts.googleapis.com/css2?family=Arvo:wght@700&family=Ubuntu&display=swap" rel="stylesheet">
   </head>
@@ -106,8 +107,8 @@
             <input type="radio" name="tile-type" id="tile-square" checked>
             <label for="tile-rectangle">Rectagle</label>
             <input type="radio" name="tile-type" id="tile-rectangle">
-            <input type="text" name="tile-height" id="tile-height" placeholder="height" aria-label="insert height here">
-            <input type="text" name="tile-width" id="tile-width" placeholder="width" aria-label="insert width here" class="hidden">
+            <input type="text" maxlength="3" title="Must contain numbers only" name="tile-height" id="tile-height" placeholder="height" aria-label="insert height here">
+            <input type="text" maxlength="3" title="Must contain numbers only" name="tile-width" id="tile-width" placeholder="width" aria-label="insert width here" class="hidden">
           </fieldset>
           <input type="submit" value="Generate!" class="generate-btn" />
         </form>

@@ -89,6 +89,31 @@ function showWidthInput (event) {
   }
 }
 
+function tileType () {
+  let tileHeight = document.querySelector("input[id='tile-height']").value;
+  let tileWidth = document.querySelector("input[id='tile-width']").value;
+  let rectangleChecked = document.querySelector("input[id='tile-rectangle']").checked;
+  
+    // inserting html in style
+  let styleTile = document.getElementById("style__tiletype");
+
+  if (rectangleChecked) {
+      styleTile.innerHTML = 
+    `.tile {
+        height: ${tileHeight}mm;
+        width: ${tileWidth}mm
+      }`
+  } else {
+     styleTile.innerHTML = 
+    `.tile {
+        height: ${tileHeight}mm;
+        width: ${tileHeight}mm
+      }`
+  }
+
+}
+
+
 
 // creating the grid and filling with tiles
 function createGrid() {
@@ -133,12 +158,12 @@ function addColoursAsCSSClass() {
   }
 
   // clearing any html in style
-  let style = document.getElementById("style");
-  style.innerHTML = "";
+  let styleColor = document.getElementById("style__colors");
+  styleColor.innerHTML = "";
 
   // assigning new styles to classes
   for (let i = 0; i < colorValues.length; i++) {
-    style.insertAdjacentHTML(
+    styleColor.insertAdjacentHTML(
       "beforeend",
       `.tile-color${i} {background-color:${colorValues[i]}}`
     );
@@ -255,6 +280,7 @@ createGrid();
 generateBtn.addEventListener("click", (event) => {
   event.preventDefault();
   createGrid();
+  tileType();
 });
 addColorBtn.addEventListener("click", (event) => {
   event.preventDefault();
