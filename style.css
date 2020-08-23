@@ -3,32 +3,71 @@
 } */
 
 :root {
-  --color-1: #edafb8;
-  --color-2: #f7e1d7;
-  --color-3: #dedbd2;
-  --color-4: #b0c4b1;
-  --color-5: #4a5759;
+  --color-1: #607D8B;
+  --color-2: #495057;
+  --color-3: #e9ecef;
+  --color-4: #dee2e6;
+  --color-5: #adb5bd;
   --title-font: 'Arvo', serif;
   --text-font: 'Ubuntu', sans-serif;
+  --text-color: #343a40;
 }
 
 body {
   margin: 0;
   font-family: var(--text-font);
+  height: 100vh;
+}
+
+header {
+  background-color: var(--color-5);
+  margin: none;
+  padding: 1rem;
 }
 
 h1 {
   font-family: var(--title-font);
+  color: var(--text-color);
   text-align: center;
+  margin: 0;
+}
+
+h2 {
+  font-family: var(--text-font);
+  text-align: center;
+  font-size: 1rem;
+  padding: 1rem 0;
+  margin: 0;
+  border-bottom: 0.1rem solid var(--color-5);
+  color: var(--color-2);
 }
 
 main {
   display: flex;
 }
 
+form {
+  color: var(--color-2);
+}
+
+fieldset {
+  margin: 1rem 0;
+  border: none;
+  width: 100%;
+  padding: 0.5rem 0;
+  border-bottom: 0.1rem solid var(--color-5);
+}
+
+legend {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
 .tile-generator__config {
-  padding: 1rem;
-  background-color: var(--color-1);
+  padding: 0 1rem;
+  background-color: var(--color-4);
   margin-left: 0;
   width: 20%;
 }
@@ -36,10 +75,22 @@ main {
 .tile-generator__config__tile input[type='text'] {
   width: 5rem;
   height: 1.5rem;
+  display: block;
+}
+
+.tile-generator__config div,
+.tile-generator__config input {
+  margin: 0.5rem 0;
+}
+
+.tile-generator__config__color legend span {
+  display: inline-block;
+  float: right;
 }
 
 .tile-generator__grid {
   margin: auto;
+  background-color: var(--color-3);
 }
 
 label {
@@ -51,12 +102,49 @@ input[type="number"] {
   height: 1.5rem;
 }
 
-.add-color,
-.remove-color {
+input[type="color"] {
+  height: 2rem;
+  width: 4rem;
+}
+
+input[type="submit"] {
+  width:100%;
+  height: 2rem;
+  margin: 1rem 0;
+  color: var(--color-4);
+  font-family: var(--title-font);
+  background-color: var(--color-2);
+  border-color: var(--color-2);
+  border-style: none;
+  border-radius: 0.5rem;
+}
+
+button, 
+input[type="submit"] {
+  cursor: pointer;
+}
+
+.color__btn {
   display: inline-block;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.svg__button {
+  height: 1.5rem;
+  width: 1.5rem;
+  margin: 0;
+  padding: 0%;
 }
 
 .color-picker {
+  display: inline-block;
+}
+
+.color-picker label,
+.color-picker input {
   display: block;
 }
 
@@ -93,12 +181,27 @@ input[type="number"] {
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 .row-container {
   font-size: 0;
 }
+
+footer {
+  background-color: var(--color-5);
+  padding: 0.5rem;
+  color: var(--color-4);
+}
+
+footer a {
+  color: var(--color-4);
+}
+
+footer p {
+  margin: 0 ;
+}
+
 
 @media print {
   header, .tile-generator__config {

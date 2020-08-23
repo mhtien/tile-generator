@@ -5,10 +5,10 @@ const form = document.querySelector("form");
 const generateBtn = document.querySelector(".generate-btn");
 
 // target add colour button
-const addColorBtn = document.querySelector(".add-color-btn");
+const addColorBtn = document.querySelector(".color__btn__add");
 
 // target remove colour button
-const removeColorBtn = document.querySelector(".remove-color-btn");
+const removeColorBtn = document.querySelector(".color__btn__remove");
 
 // target tile shapes radio button
 const rectangleTileOption = document.querySelector("input[id='tile-rectangle']");
@@ -38,7 +38,7 @@ function addTiles(event) {
 
 function addNewRow(event) {
   // targets row number
-  let rowNumber = document.querySelector(".row-input").value;
+  let columnNumber = document.querySelector(".column-input").value;
 
   cloneFragment();
   let newRow = cloneDocumentFragment.querySelector(".row-container");
@@ -46,7 +46,7 @@ function addNewRow(event) {
   do {
     addTiles(newRow);
     i++;
-  } while (i < rowNumber);
+  } while (i < columnNumber);
 
   event.appendChild(newRow);
 }
@@ -92,8 +92,15 @@ function showWidthInput (event) {
 function tileType () {
   let tileHeight = document.querySelector("input[id='tile-height']").value;
   let tileWidth = document.querySelector("input[id='tile-width']").value;
+
   let rectangleChecked = document.querySelector("input[id='tile-rectangle']").checked;
-  
+  if (tileHeight === "" || "0") {
+    tileHeight = 300
+  }
+
+  if (tileWidth === "" || "0") {
+    tileWidth = 300
+  }
     // inserting html in style
   let styleTile = document.getElementById("style__tiletype");
 
@@ -125,7 +132,7 @@ function tileType () {
 // creating the grid and filling with tiles
 function createGrid() {
   // targets column number
-  let columnNumber = document.querySelector(".column-input").value;
+  let rowNumber = document.querySelector(".row-input").value;
 
   // clearing any existing tiles
   while (tileGrid.firstChild) {
@@ -137,7 +144,7 @@ function createGrid() {
   do {
     addNewRow(tileGrid);
     i++;
-  } while (i < columnNumber);
+  } while (i < rowNumber);
 
   addColoursAsCSSClass();
 

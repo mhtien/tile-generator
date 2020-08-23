@@ -20,65 +20,81 @@
         <form>
           <fieldset class="tile-generator__config__grid">
             <legend>Grid</legend>
-            <label for="row-input">Rows</label>
-            <input
-              class="row-input"
-              name="row-input"
-              id="row-input"
-              type="number"
-              value="5"
-            />
-            <label for="column-input">Columns</label>
-            <input
-              class="column-input"
-              name="column-input"
-              id="column-input"
-              type="number"
-              value="5"
-            />
+            <div>
+              <label for="row-input">Rows</label>
+              <input
+                class="row-input"
+                name="row-input"
+                id="row-input"
+                type="number"
+                value="10"
+              />
+            </div>
+            <div>
+              <label for="column-input">Columns</label>
+              <input
+                class="column-input"
+                name="column-input"
+                id="column-input"
+                type="number"
+                value="5"
+              />
+            </div>
           </fieldset>
           <fieldset class="tile-generator__config__color">
-            <legend>Colour</legend>
-            <button
-              class="add-color-btn"
-              aria-label="add another colour picker"
-            >
-              Add colour
-            </button>
-            <button
-              class="remove-color-btn"
-              aria-label="remove the previous colour picker"
-            >
-              Remove colour
-            </button>
+            <legend>Colour
+              <span>
+                <button
+                  class="color__btn color__btn__add"
+                  aria-label="add another colour picker"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" class="svg__button" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#607D8B" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z"/>
+                    <circle cx="12" cy="12" r="9" />
+                    <line x1="9" y1="12" x2="15" y2="12" />
+                    <line x1="12" y1="9" x2="12" y2="15" />
+                  </svg>
+                </button>
+                <button
+                  class="color__btn color__btn__remove"
+                  aria-label="remove the previous colour picker"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" class="svg__button" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#607D8B" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z"/>
+                    <circle cx="12" cy="12" r="9" />
+                    <line x1="9" y1="12" x2="15" y2="12" />
+                  </svg>
+                </button>
+              </span>
+            </legend>
             <div class="color-picker-container">
               <div class="color-picker" oninput="showHexColor(event)">
-                <label>Tile Colour:</label>
+                <label>Colour:</label>
                 <input
                   class="color-input"
                   type="color"
                   name="color"
-                  value="#c0c0c0"
+                  value="#dee2ff"
                   aria-label="color-picker"
                 />
               </div>
               <div class="color-picker" oninput="showHexColor(event)">
-                <label>Tile Colour:</label>
+                <label>Colour:</label>
                 <input
                   class="color-input"
                   type="color"
                   name="color"
-                  value="#008080"
+                  value="#8e9aaf"
                   aria-label="color-picker"
                 />
               </div>
               <div class="color-picker" oninput="showHexColor(event)">
-                <label>Tile Colour:</label>
+                <label>Colour:</label>
                 <input
                   class="color-input"
                   type="color"
                   name="color"
-                  value="#8080ff"
+                  value="#efd3d7"
                   aria-label="color-picker"
                 />
               </div>
@@ -121,11 +137,15 @@
           <fieldset class="tile-generator__config__scale">
             <legend>Scale</legend>
             <div>
+              <input type="radio" name="tile-scale" id="scale-fit" checked value=0>
+              <label for="scale-fit">default</label>
+            </div>
+            <div>
               <input type="radio" name="tile-scale" id="scale-10" value = 10>
               <label for="scale-10">1:10</label>
             </div>
             <div>
-              <input type="radio" name="tile-scale" id="scale-25" checked value=25>
+              <input type="radio" name="tile-scale" id="scale-25" value=25>
               <label for="scale-25">1:25</label>
             </div>
             <div>
@@ -138,17 +158,20 @@
       </section>
       <section class="tile-generator__grid">Generate Tiles Here!</section>
     </main>
-    <footer></footer>
+    <footer>
+      <p>
+        &#169 <a href="https://github.com/mhtien">MHT</a> 2020
+      </p>
     <template>
       <div class="tile"></div>
       <div class="row-container"></div>
       <div class="color-picker" oninput="showHexColor(event)">
-        <label>Tile Colour:</label>
+        <label>Colour:</label>
         <input
           class="color-input"
           type="color"
           id="color"
-          value="#c0c0c0"
+          value="#8e9aaf"
           aria-label="color-picker"
         />
       </div>
