@@ -94,11 +94,11 @@ function tileType () {
   let tileWidth = document.querySelector("input[id='tile-width']").value;
 
   let rectangleChecked = document.querySelector("input[id='tile-rectangle']").checked;
-  if (tileHeight === "" || "0") {
+  if (tileHeight === "" || tileHeight === "0") {
     tileHeight = 300
   }
 
-  if (tileWidth === "" || "0") {
+  if (tileWidth === "" || tileWidth === "0") {
     tileWidth = 300
   }
     // inserting html in style
@@ -107,21 +107,26 @@ function tileType () {
   const scales = document.querySelectorAll("input[name='tile-scale']");
   const scalesArray = [...scales];
   const filterScale = scalesArray.filter(scale => scale.checked);
-  const fixedScale = Number(filterScale[0].value);
-  tileHeight /= fixedScale;
-  tileWidth /= fixedScale;
+  let fixedScale = Number(filterScale[0].value);
+
+  if (fixedScale === 0) {
+    fixedScale = 20;
+    } 
+    tileHeight /= fixedScale;
+    tileWidth /= fixedScale;
+    
 
   if (rectangleChecked) {
       styleTile.innerHTML = 
     `.tile {
         height: ${tileHeight}mm;
-        width: ${tileWidth}mm
+        width: ${tileWidth}mm;
       }`
   } else {
      styleTile.innerHTML = 
     `.tile {
         height: ${tileHeight}mm;
-        width: ${tileHeight}mm
+        width: ${tileHeight}mm;
       }`
   }
 
@@ -293,8 +298,8 @@ createGrid();
 // event listeners
 generateBtn.addEventListener("click", (event) => {
   event.preventDefault();
-  createGrid();
   tileType();
+  createGrid();
 });
 addColorBtn.addEventListener("click", (event) => {
   event.preventDefault();
