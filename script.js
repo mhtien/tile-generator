@@ -1,28 +1,30 @@
 // targets colour palette
-const form = document.querySelector("form");
+const form = document.querySelector('form');
 
 // target generate button
-const generateBtn = document.querySelector(".generate-btn");
+const generateBtn = document.querySelector('.generate-btn');
 
 // target add colour button
-const addColorBtn = document.querySelector(".color__btn__add");
+const addColorBtn = document.querySelector('.color__btn__add');
 
 // target remove colour button
-const removeColorBtn = document.querySelector(".color__btn__remove");
+const removeColorBtn = document.querySelector('.color__btn__remove');
 
 // target tile shapes radio button
-const rectangleTileOption = document.querySelector("input[id='tile-rectangle']");
+const rectangleTileOption = document.querySelector(
+  "input[id='tile-rectangle']"
+);
 const squareTileOption = document.querySelector("input[id='tile-square']");
 
 // targets tile grid div container
-let tileGrid = document.querySelector(".tile-generator__grid");
+let tileGrid = document.querySelector('.tile-generator__grid');
 
 // targets types of generating grid
-let randomBtn = document.querySelector("#randomise");
-let notAdjacentBtn = document.querySelector("#not-adjacent");
+let randomBtn = document.querySelector('#randomise');
+let notAdjacentBtn = document.querySelector('#not-adjacent');
 
 // targetting template
-let template = document.querySelector("template");
+let template = document.querySelector('template');
 let templateContent = template.content;
 
 function cloneFragment() {
@@ -32,16 +34,16 @@ function cloneFragment() {
 // creating new tiles
 function addTiles(event) {
   cloneFragment();
-  let newTile = cloneDocumentFragment.querySelector(".tile");
+  let newTile = cloneDocumentFragment.querySelector('.tile');
   event.appendChild(newTile);
 }
 
 function addNewRow(event) {
   // targets row number
-  let columnNumber = document.querySelector(".column-input").value;
+  let columnNumber = document.querySelector('.column-input').value;
 
   cloneFragment();
-  let newRow = cloneDocumentFragment.querySelector(".row-container");
+  let newRow = cloneDocumentFragment.querySelector('.row-container');
   let i = 0;
   do {
     addTiles(newRow);
@@ -54,90 +56,84 @@ function addNewRow(event) {
 // adding additional colour picker
 function addColor() {
   cloneFragment();
-  let newColor = cloneDocumentFragment.querySelector(".color-picker");
-  let colorPickerContainer = document.querySelector(".color-picker-container");
+  let newColor = cloneDocumentFragment.querySelector('.color-picker');
+  let colorPickerContainer = document.querySelector('.color-picker-container');
   colorPickerContainer.appendChild(newColor);
 }
 
 // removing last colour picker
 function removeColor() {
-  let colourPickers = form.querySelectorAll(".color-picker");
-  let colorPickerContainer = document.querySelector(".color-picker-container");
+  let colourPickers = form.querySelectorAll('.color-picker');
+  let colorPickerContainer = document.querySelector('.color-picker-container');
   if (colourPickers.length > 1) {
     colorPickerContainer.lastChild.remove();
   } else {
     // need to add text to be revealed eventually
-    alert("you need atleast one colour!");
+    alert('you need atleast one colour!');
   }
 }
 
 // color picker value to show above color picker
 function showHexColor(event) {
   let currentTarget = event.currentTarget;
-  let colorValue = currentTarget.querySelector("input").value;
-  currentTarget.querySelector("label").textContent = colorValue;
+  let colorValue = currentTarget.querySelector('input').value;
+  currentTarget.querySelector('label').textContent = colorValue;
 }
 
-
 // Tile Shape
-function showWidthInput (event) {
+function showWidthInput(event) {
   let tileWidthInput = document.querySelector("input[id='tile-width']");
-  if (event.target.id === "tile-rectangle") {
-    tileWidthInput.classList.remove("hidden");
+  if (event.target.id === 'tile-rectangle') {
+    tileWidthInput.classList.remove('hidden');
   } else {
-    tileWidthInput.classList.add("hidden");
+    tileWidthInput.classList.add('hidden');
   }
 }
 
-function tileType () {
+function tileType() {
   let tileHeight = document.querySelector("input[id='tile-height']").value;
   let tileWidth = document.querySelector("input[id='tile-width']").value;
 
-  let rectangleChecked = document.querySelector("input[id='tile-rectangle']").checked;
-  if (tileHeight === "" || tileHeight === "0") {
-    tileHeight = 300
+  let rectangleChecked = document.querySelector("input[id='tile-rectangle']")
+    .checked;
+  if (tileHeight === '' || tileHeight === '0') {
+    tileHeight = 300;
   }
 
-  if (tileWidth === "" || tileWidth === "0") {
-    tileWidth = 300
+  if (tileWidth === '' || tileWidth === '0') {
+    tileWidth = 300;
   }
-    // inserting html in style
-  let styleTile = document.getElementById("style__tiletype");
+  // inserting html in style
+  let styleTile = document.getElementById('style__tiletype');
 
   const scales = document.querySelectorAll("input[name='tile-scale']");
   const scalesArray = [...scales];
-  const filterScale = scalesArray.filter(scale => scale.checked);
+  const filterScale = scalesArray.filter((scale) => scale.checked);
   let fixedScale = Number(filterScale[0].value);
 
   if (fixedScale === 0) {
     fixedScale = 20;
-    } 
-    tileHeight /= fixedScale;
-    tileWidth /= fixedScale;
-    
+  }
+  tileHeight /= fixedScale;
+  tileWidth /= fixedScale;
 
   if (rectangleChecked) {
-      styleTile.innerHTML = 
-    `.tile {
+    styleTile.innerHTML = `.tile {
         height: ${tileHeight}mm;
         width: ${tileWidth}mm;
-      }`
+      }`;
   } else {
-     styleTile.innerHTML = 
-    `.tile {
+    styleTile.innerHTML = `.tile {
         height: ${tileHeight}mm;
         width: ${tileHeight}mm;
-      }`
+      }`;
   }
-
 }
-
-
 
 // creating the grid and filling with tiles
 function createGrid() {
   // targets column number
-  let rowNumber = document.querySelector(".row-input").value;
+  let rowNumber = document.querySelector('.row-input').value;
 
   // clearing any existing tiles
   while (tileGrid.firstChild) {
@@ -168,7 +164,7 @@ function randomInteger(num) {
 
 function addColoursAsCSSClass() {
   // getting the colours from picker
-  let colorRange = document.getElementsByClassName("color-input");
+  let colorRange = document.getElementsByClassName('color-input');
   let colorValues = [];
 
   // pushing colour values into array
@@ -177,13 +173,13 @@ function addColoursAsCSSClass() {
   }
 
   // clearing any html in style
-  let styleColor = document.getElementById("style__colors");
-  styleColor.innerHTML = "";
+  let styleColor = document.getElementById('style__colors');
+  styleColor.innerHTML = '';
 
   // assigning new styles to classes
   for (let i = 0; i < colorValues.length; i++) {
     styleColor.insertAdjacentHTML(
-      "beforeend",
+      'beforeend',
       `.tile-color${i} {background-color:${colorValues[i]}}`
     );
   }
@@ -191,7 +187,7 @@ function addColoursAsCSSClass() {
 // obtaining colour values
 function assignRandomColors() {
   // getting the colours from picker
-  let colorRange = document.getElementsByClassName("color-input");
+  let colorRange = document.getElementsByClassName('color-input');
   let colorRangeClass = [];
   // pushing class value names into array
   for (let i = 0; i < colorRange.length; i++) {
@@ -202,7 +198,7 @@ function assignRandomColors() {
   for (let i = 0; i < tileGrid.childElementCount; i++) {
     for (let j = 0; j < tileGrid.children[0].childElementCount; j++) {
       let randomColor = colorRangeClass[randomInteger(colorRangeClass.length)];
-      tileGrid.children[i].children[j].classList.add("class", randomColor);
+      tileGrid.children[i].children[j].classList.add('class', randomColor);
     }
   }
 }
@@ -210,7 +206,7 @@ function assignRandomColors() {
 // This currently needs updating
 function assignNotAdjacentColors() {
   // getting the colours from picker
-  let colorRange = document.getElementsByClassName("color-input");
+  let colorRange = document.getElementsByClassName('color-input');
   let colorRangeClass = [];
   // pushing class value names into array
   for (let i = 0; i < colorRange.length; i++) {
@@ -222,7 +218,7 @@ function assignNotAdjacentColors() {
       if (i === 0 && j === 0) {
         let randomColor =
           colorRangeClass[randomInteger(colorRangeClass.length)];
-        tileGrid.children[i].children[j].classList.add("class", randomColor);
+        tileGrid.children[i].children[j].classList.add('class', randomColor);
       }
       if (i === 0 && j > 0) {
         let possibleColors = [...colorRangeClass];
@@ -238,7 +234,7 @@ function assignNotAdjacentColors() {
         }
         // random color that does not include previous tile color
         let randomColor = possibleColors[randomInteger(possibleColors.length)];
-        tileGrid.children[i].children[j].classList.add("class", randomColor);
+        tileGrid.children[i].children[j].classList.add('class', randomColor);
       }
       if (i > 0 && j === 0) {
         let possibleColors = [...colorRangeClass];
@@ -255,7 +251,7 @@ function assignNotAdjacentColors() {
         }
         // random color that does not include previous tile color
         let randomColor = possibleColors[randomInteger(possibleColors.length)];
-        tileGrid.children[i].children[j].classList.add("class", randomColor);
+        tileGrid.children[i].children[j].classList.add('class', randomColor);
       }
 
       // to check left and above tiles
@@ -286,28 +282,29 @@ function assignNotAdjacentColors() {
 
         // random color that does not include previous tile color
         let randomColor = possibleColors[randomInteger(possibleColors.length)];
-        tileGrid.children[i].children[j].classList.add("class", randomColor);
+        tileGrid.children[i].children[j].classList.add('class', randomColor);
       }
     }
   }
 }
 
 // initial tile grid
+tileType();
 createGrid();
 
 // event listeners
-generateBtn.addEventListener("click", (event) => {
+generateBtn.addEventListener('click', (event) => {
   event.preventDefault();
   tileType();
   createGrid();
 });
-addColorBtn.addEventListener("click", (event) => {
+addColorBtn.addEventListener('click', (event) => {
   event.preventDefault();
   addColor();
 });
-removeColorBtn.addEventListener("click", (event) => {
+removeColorBtn.addEventListener('click', (event) => {
   event.preventDefault();
   removeColor();
 });
-rectangleTileOption.addEventListener("click", showWidthInput);
-squareTileOption.addEventListener("click", showWidthInput)
+rectangleTileOption.addEventListener('click', showWidthInput);
+squareTileOption.addEventListener('click', showWidthInput);
