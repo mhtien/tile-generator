@@ -1,4 +1,4 @@
-# Tile Pettern Generator
+# Tile Pattern Generator
 
 Link: https://mhtien.github.io/tile-generator/
 
